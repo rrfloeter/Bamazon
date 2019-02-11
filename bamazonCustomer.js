@@ -100,7 +100,7 @@ function AMZE() {
             connection.query("SELECT * FROM products", function (err, result, fields) {
                 var Quant = result[0].Quantity;
                 var newQuant = (Quant - num);
-                if (num < Quant) {
+                if (num < Quant) { 
                     console.log("Great News! We have enough for you to purchase!");
                     var Price = result[0].price;
                     var total = (num * Price);
