@@ -144,20 +144,17 @@ function New() {
             }
         }
     ]).then(function (answer) {
+        var NewProduct = {
+            item_id: answer.id,
+            product_name: answer.product,
+            department_name: answer.department,
+            price: answer.price,
+            Quantity: answer.quantity
+        }
         connection.query(
-            "INSERT INTO products SET ?",
-            {
-                item_id: answer.id,
-                product_name: answer.product,
-                department_name: answer.department,
-                price: answer.price,
-                Quantity: answer.quantity
-            },
-            function (err) {
+            "INSERT INTO products SET ?", NewProduct, (err, res) => {
                 if (err) throw err;
-                console.log("You've added a new item");
-                connection.end();
-            }
-        );
+                console.log("Worked");
+            });
     });
 }
