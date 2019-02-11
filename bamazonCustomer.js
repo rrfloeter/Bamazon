@@ -104,22 +104,39 @@ function AMZE() {
             connection.query("SELECT * FROM products", function (err, result, fields) {
                 var Quant = result[0].Quantity;
                 var newQuant = (Quant - num);
-                if (num < Quant) { 
+                if (num < Quant) {
                     console.log("Great News! We have enough for you to purchase!");
                     var Price = result[0].price;
                     var total = (num * Price);
+                    var dept = result[0].department_name;
                     console.log("Your Total is $" + total);
-                    connection.query("UPDATE products SET ? WHERE ?",
-                        [
-                            {
-                                Quantity: newQuant
-                            },
-                            {
-                                id: 1
-                            }
-                        ]
-                    );
-                    connection.end();
+
+                    connection.query("SELECT * FROM departments", function (err, result, fields) {
+                        var total1 = result[0].product_sales;
+                        console.log(total1);
+                        var final = total1 + total;
+                        console.log(final);
+
+                        connection.query("UPDATE products SET ? WHERE ?",
+                            [
+                                {
+                                    Quantity: newQuant
+                                },
+                                {
+                                    id: 1
+                                }
+                            ]);
+                        connection.query("UPDATE departments SET ? WHERE ?",
+                            [
+                                {
+                                    product_sales: final
+                                },
+                                {
+                                    department_name: dept
+                                }
+                            ]);
+                        connection.end();
+                    });
                 }
                 else {
                     console.log("Sorry we have insufficient Quantity.");
@@ -149,18 +166,34 @@ function JB() {
                     console.log("Great News! We have enough for you to purchase!");
                     var Price = result[1].price;
                     var total = (num * Price);
+                    var dept = result[1].department_name;
                     console.log("Your Total is $" + total);
-                    connection.query("UPDATE products SET ? WHERE ?",
-                        [
-                            {
-                                Quantity: newQuant
-                            },
-                            {
-                                id: 2
-                            }
-                        ]
-                    );
-                    connection.end();
+
+                    connection.query("SELECT * FROM departments", function (err, result, fields) {
+                        var total1 = result[1].product_sales;
+                        var final = total1 + total;
+
+                        connection.query("UPDATE products SET ? WHERE ?",
+                            [
+                                {
+                                    Quantity: newQuant
+                                },
+                                {
+                                    id: 2
+                                }
+                            ]
+                        );
+                        connection.query("UPDATE departments SET ? WHERE ?",
+                            [
+                                {
+                                    product_sales: final
+                                },
+                                {
+                                    department_name: dept
+                                }
+                            ]);
+                        connection.end();
+                    });
                 }
                 else {
                     console.log("Sorry we have insufficient Quantity.");
@@ -190,18 +223,34 @@ function EJ() {
                     console.log("Great News! We have enough for you to purchase!");
                     var Price = result[2].price;
                     var total = (num * Price);
+                    var dept = result[2].department_name;
                     console.log("Your Total is $" + total);
-                    connection.query("UPDATE products SET ? WHERE ?",
-                        [
-                            {
-                                Quantity: newQuant
-                            },
-                            {
-                                id: 3
-                            }
-                        ]
-                    );
-                    connection.end();
+
+                    connection.query("SELECT * FROM departments", function (err, result, fields) {
+                        var total1 = result[2].product_sales;
+                        var final = total1 + total;
+
+                        connection.query("UPDATE products SET ? WHERE ?",
+                            [
+                                {
+                                    Quantity: newQuant
+                                },
+                                {
+                                    id: 3
+                                }
+                            ]
+                        );
+                        connection.query("UPDATE departments SET ? WHERE ?",
+                            [
+                                {
+                                    product_sales: final
+                                },
+                                {
+                                    department_name: dept
+                                }
+                            ]);
+                        connection.end();
+                    });
                 }
                 else {
                     console.log("Sorry we have insufficient Quantity.");
@@ -231,19 +280,38 @@ function PS4() {
                     console.log("Great News! We have enough for you to purchase!");
                     var Price = result[3].price;
                     var total = (num * Price);
+                    var dept = result[3].department_name;
+                    console.log(dept);
                     console.log("Your Total is $" + total);
-                    connection.query("UPDATE products SET ? WHERE ?",
-                        [
-                            {
-                                Quantity: newQuant
-                            },
-                            {
-                                id: 4
-                            }
-                        ]
-                    );
-                    connection.end();
+
+                    connection.query("SELECT * FROM departments", function (err, result, fields) {
+                        var total1 = result[0].product_sales;
+                        var final = total1 + total;
+
+                        connection.query("UPDATE products SET ? WHERE ?",
+                            [
+                                {
+                                    Quantity: newQuant
+                                },
+                                {
+                                    id: 4
+                                }
+                            ]
+                        );
+                        connection.query("UPDATE departments SET ? WHERE ?",
+                            [
+                                {
+                                    product_sales: final
+                                },
+                                {
+                                    department_name: dept
+                                }
+                            ]);
+                        connection.end()
+
+                    });
                 }
+
                 else {
                     console.log("Sorry we have insufficient Quantity.");
                     connection.end();
@@ -272,18 +340,37 @@ function LEDG() {
                     console.log("Great News! We have enough for you to purchase!");
                     var Price = result[4].price;
                     var total = (num * Price);
+                    var dept = result[4].department_name;
                     console.log("Your Total is $" + total);
-                    connection.query("UPDATE products SET ? WHERE ?",
-                        [
-                            {
-                                Quantity: newQuant
-                            },
-                            {
-                                id: 5
-                            }
-                        ]
-                    );
-                    connection.end();
+
+                    connection.query("SELECT * FROM departments", function (err, result, fields) {
+                        var total1 = result[0].product_sales;
+                        console.log(total1);
+                        var final = total1 + total;
+                        console.log(final);
+
+                        connection.query("UPDATE products SET ? WHERE ?",
+                            [
+                                {
+                                    Quantity: newQuant
+                                },
+                                {
+                                    id: 5
+                                }
+                            ]
+                        );
+                        connection.query("UPDATE departments SET ? WHERE ?",
+                            [
+                                {
+                                    product_sales: final
+                                },
+                                {
+                                    department_name: dept
+                                }
+                            ]);
+                        connection.end();
+
+                    });
                 }
                 else {
                     console.log("Sorry we have insufficient Quantity.");
@@ -313,18 +400,37 @@ function MP() {
                     console.log("Great News! We have enough for you to purchase!");
                     var Price = result[5].price;
                     var total = (num * Price);
+                    var dept = result[5].department_name;
+                    console.log(dept);
                     console.log("Your Total is $" + total);
-                    connection.query("UPDATE products SET ? WHERE ?",
-                        [
-                            {
-                                Quantity: newQuant
-                            },
-                            {
-                                id: 6
-                            }
-                        ]
-                    );
-                    connection.end();
+
+                    connection.query("SELECT * FROM departments", function (err, result, fields) {
+                        var total1 = result[3].product_sales;
+                        console.log(total1);
+                        var final = total1 + total;
+                        console.log(final);
+
+                        connection.query("UPDATE products SET ? WHERE ?",
+                            [
+                                {
+                                    Quantity: newQuant
+                                },
+                                {
+                                    id: 6
+                                }
+                            ]
+                        );
+                        connection.query("UPDATE departments SET ? WHERE ?",
+                            [
+                                {
+                                    product_sales: final
+                                },
+                                {
+                                    department_name: dept
+                                }
+                            ]);
+                        connection.end();
+                    });
                 }
                 else {
                     console.log("Sorry we have insufficient Quantity.");
@@ -355,18 +461,37 @@ function KFT() {
                     console.log("Great News! We have enough for you to purchase!");
                     var Price = result[6].price;
                     var total = (num * Price);
+                    var dept = result[6].department_name;
+                    console.log(dept);
                     console.log("Your Total is $" + total);
-                    connection.query("UPDATE products SET ? WHERE ?",
-                        [
-                            {
-                                Quantity: newQuant
-                            },
-                            {
-                                id: 7
-                            }
-                        ]
-                    );
-                    connection.end();
+
+                    connection.query("SELECT * FROM departments", function (err, result, fields) {
+                        var total1 = result[3].product_sales;
+                        console.log(total1);
+                        var final = total1 + total;
+                        console.log(final);
+
+                        connection.query("UPDATE products SET ? WHERE ?",
+                            [
+                                {
+                                    Quantity: newQuant
+                                },
+                                {
+                                    id: 7
+                                }
+                            ]
+                        );
+                        connection.query("UPDATE departments SET ? WHERE ?",
+                            [
+                                {
+                                    product_sales: final
+                                },
+                                {
+                                    department_name: dept
+                                }
+                            ]);
+                        connection.end();
+                    });
                 }
                 else {
                     console.log("Sorry we have insufficient Quantity.");
@@ -396,18 +521,36 @@ function COLA() {
                     console.log("Great News! We have enough for you to purchase!");
                     var Price = result[7].price;
                     var total = (num * Price);
+                    var dept = result[7].department_name;
+                    console.log(dept);
                     console.log("Your Total is $" + total);
-                    connection.query("UPDATE products SET ? WHERE ?",
-                        [
+
+                    connection.query("SELECT * FROM departments", function (err, result, fields) {
+                        var total1 = result[3].product_sales;
+                        console.log(total1);
+                        var final = total1 + total;
+                        console.log(final);
+
+                        connection.query("UPDATE products SET ? WHERE ?",
+                            [
+                                {
+                                    Quantity: newQuant
+                                },
+                                {
+                                    id: 8
+                                }
+                            ]
+                        );
+                        connection.query("UPDATE departments SET ? WHERE ?", [
                             {
-                                Quantity: newQuant
+                                product_sales: final
                             },
                             {
-                                id: 8
+                                department_name: dept
                             }
-                        ]
-                    );
-                    connection.end();
+                        ]);
+                        connection.end();
+                    });
                 }
                 else {
                     console.log("Sorry we have insufficient Quantity.");
@@ -437,18 +580,37 @@ function SNK() {
                     console.log("Great News! We have enough for you to purchase!");
                     var Price = result[8].price;
                     var total = (num * Price);
+                    var dept = result[8].department_name;
+                    console.log(dept);
                     console.log("Your Total is $" + total);
-                    connection.query("UPDATE products SET ? WHERE ?",
-                        [
-                            {
-                                Quantity: newQuant
-                            },
-                            {
-                                id: 9
-                            }
-                        ]
-                    );
-                    connection.end();
+
+                    connection.query("SELECT * FROM departments", function (err, result, fields) {
+                        var total1 = result[4].product_sales;
+                        console.log(total1);
+                        var final = total1 + total;
+                        console.log(final);
+
+                        connection.query("UPDATE products SET ? WHERE ?",
+                            [
+                                {
+                                    Quantity: newQuant
+                                },
+                                {
+                                    id: 9
+                                }
+                            ]
+                        );
+                        connection.query("UPDATE departments SET ? WHERE ?",
+                            [
+                                {
+                                    product_sales: final
+                                },
+                                {
+                                    department_name: dept
+                                }
+                            ]);
+                        connection.end();
+                    });
                 }
                 else {
                     console.log("Sorry we have insufficient Quantity.");
@@ -478,18 +640,37 @@ function SWST() {
                     console.log("Great News! We have enough for you to purchase!");
                     var Price = result[9].price;
                     var total = (num * Price);
+                    var dept = result[9].department_name;
+                    console.log(dept);
                     console.log("Your Total is $" + total);
-                    connection.query("UPDATE products SET ? WHERE ?",
-                        [
-                            {
-                                Quantity: newQuant
-                            },
-                            {
-                                id: 10
-                            }
-                        ]
-                    );
-                    connection.end();
+
+                    connection.query("SELECT * FROM departments", function (err, result, fields) {
+                        var total1 = result[4].product_sales;
+                        console.log(total1);
+                        var final = total1 + total;
+                        console.log(final);
+
+                        connection.query("UPDATE products SET ? WHERE ?",
+                            [
+                                {
+                                    Quantity: newQuant
+                                },
+                                {
+                                    id: 10
+                                }
+                            ]
+                        );
+                        connection.query("UPDATE departments SET ? WHERE ?",
+                            [
+                                {
+                                    product_sales: final
+                                },
+                                {
+                                    department_name: dept
+                                }
+                            ]);
+                        connection.end();
+                    });
                 }
                 else {
                     console.log("Sorry we have insufficient Quantity.");
