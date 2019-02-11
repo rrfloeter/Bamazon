@@ -63,8 +63,10 @@ function Low() {
         connection.query("SELECT * FROM products", function (err, result, fields) {
             for (var i = 0; i < result.length; i++) {
                 if (result[i].Quantity < 5) {
-                    console.log(result[i]);
+                    var columns = columnify(result[i]);
+                    console.log(columns);
                 }
+
             }
             connection.end();
         });
