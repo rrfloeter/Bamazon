@@ -1,5 +1,6 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
+var columnify = require('columnify');
 
 var connection = mysql.createConnection({
     host: "localhost",
@@ -48,8 +49,9 @@ function Manager() {
 function Work() {
     connection.connect(function (err) {
         connection.query("SELECT * FROM products", function (err, result, fields) {
+            var columns = columnify(result);
             if (err) throw err;
-            console.log(result);
+            console.log(columns);
             connection.end();
         });
     });
@@ -144,17 +146,20 @@ function New() {
             }
         }
     ]).then(function (answer) {
-        var NewProduct = {
-            item_id: answer.id,
-            product_name: answer.product,
-            department_name: answer.department,
-            price: answer.price,
-            Quantity: answer.quantity
-        }
         connection.query(
-            "INSERT INTO products SET ?", NewProduct, (err, res) => {
+            "INSERT INTO products SET ?",
+            {
+                item_id: answer.id,
+                product_name: answer.product,
+                department_name: answer.department,
+                price: answer.price,
+                Quantity: answer.quantity
+            },
+            function (err) {
                 if (err) throw err;
-                console.log("Worked");
-            });
+                console.log("You've added a new item");
+                connection.end();
+            }
+        );
     });
 }

@@ -1,5 +1,6 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
+var columnify = require('columnify');
 
 var connection = mysql.createConnection({
     host: "localhost",
@@ -12,8 +13,9 @@ var connection = mysql.createConnection({
 connection.connect(function (err) {
     if (err) throw err;
     connection.query("SELECT * FROM products", function (err, result, fields) {
+        var columns = columnify(result);
         if (err) throw err;
-        console.log(result);
+        console.log(columns);
         ID();
     });
 });
