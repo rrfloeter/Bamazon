@@ -1,13 +1,14 @@
+require("dotenv").config();
 var mysql = require("mysql");
 var inquirer = require("inquirer");
 var columnify = require('columnify');
 
 var connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    port: 3306,
-    password: "Pengu1n$$$",
-    database: "bamazon"
+    host: process.env.host,
+    user: process.env.user,
+    port: process.env.port,
+    password: process.env.password,
+    database: process.env.database
 });
 
 Manager();
@@ -39,7 +40,7 @@ function Manager() {
                 break;
 
             case "Click to Exit":
-                console.log("test worked");
+                console.log("You have exited the Manager app");
                 connection.end();
                 break;
         }
